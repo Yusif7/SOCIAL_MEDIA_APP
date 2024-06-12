@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h2>&#128100;Create your account :</h2>
+
+        <form action="{% url 'usersApp:register' %}" method="post" class="mt-5">
+            {% csrf_token %}
+            {% load widget_tweaks %}
+            <!-- {{ user_form.as_p}} -->
+            <p>
+                <label for="" class="form-label">Username:</label>
+                {{ user_form.username|add_class:"form-control" }}
+            </p>
+            <p>
+                <label for="" class="form-label">Email:</label>
+                {{ user_form.email|add_class:"form-control" }}
+            </p>
+            <p>
+                <label for="" class="form-label">First name:</label>
+                {{ user_form.first_name|add_class:"form-control" }}
+            </p>
+            <p>
+                <label for="" class="form-label">Password :</label>
+                {{ user_form.password|add_class:"form-control" }}
+            </p>
+            <p>
+                <label for="" class="form-label">Confirm password:</label>
+                {{ user_form.password2|add_class:"form-control" }}
+            </p>
+
+            <button type="submit" class="btn btn-success mt-3">Register &#10148;</button>
+        </form>
+        <div class="mt-5">
+            <a href="{% url 'usersApp:password_reset' %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Forgot password?</a>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
