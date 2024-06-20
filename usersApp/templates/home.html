@@ -4,15 +4,73 @@
 {% block content %}
 
 
-<h1>Users App home page</h1>
+<h1 class="text-center">My Posts</h1>
 
-{% for post in posts %}
-<h1>{{ post.title }}</h1>
-<h2>{{ post.user }}</h2>
-<img src="{{post.image.url}}" alt="" height="500px" width="500px">
-{% endfor %}
-<br>
-<a href="{% url 'usersApp:password_change' %}" class="btn btn-warning mt-3">Change password</a>
+<div class="container mt-5">
+  {% for post in posts %}
+    <div class="card post-card">
+      <div class="card-header d-flex align-items-center">
+
+        <img src="{{ profile.photo.url }}" alt="User Avatar" class="rounded-circle me-3 avatar">
+        <div>
+          <h5 class="mb-0">{{ post.user }}</h5>
+          <small class="text-muted">Just now</small>
+        </div>
+      </div>
+
+      <div class="card-body">
+         <h4 class="card-title">{{ post.title }}</h4>
+        <p>{{ post.caption }}</p>
+        <img src="{{post.image.url}}" alt="Post Image" class="img-fluid post-image">
+      </div>
+
+      <div class="card-footer d-flex justify-content-between">
+        <div>
+          <button class="btn btn-primary me-2">Like</button>
+          <button class="btn btn-secondary me-2">Comment</button>
+          <button class="btn btn-info">Share</button>
+        </div>
+
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 
 
+<style>
+    .card-header {
+      background-color: #f8f9fa;
+    }
+    .card-body {
+      background-color: #ffffff;
+    }
+    .card-footer {
+      background-color: #f8f9fa;
+    }
+    .social-icons a {
+      color: #495057;
+      margin-right: 15px;
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+    .post-image {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
+    .post-card {
+      max-width: 800px;
+      margin: 30px auto !important;
+    }
+
+</style>
 {% endblock %}

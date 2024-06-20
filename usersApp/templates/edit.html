@@ -2,12 +2,44 @@
 
 {% block content %}
 
-        <p>Edit your profile</p>
+        <h1 class="text-center">Edit your profile</h1>
+        <div class="row m-5">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% load widget_tweaks %}
+                  <p>
+                    <label for="id_first_name" class="form-label fw-bold">First name:</label>
+                    {{ user_form.first_name|add_class:"form-control" }}
+                  </p>
+                  <p>
+                    <label for="id_last_name" class="form-label fw-bold">Last name:</label>
+                    {{ user_form.last_name|add_class:"form-control" }}
+                  </p>
+                  <p>
+                    <label for="id_email" class="form-label fw-bold">Email address:</label>
+                    {{ user_form.email|add_class:"form-control" }}
+                  </p>
+                  <p>
+                      <label for="id_photo" class="form-label fw-bold">Photo:</label>
+                      <br>
+                       <!--
+                        Currently: <a href="/media/usersApp/2024/06/11/WhatsApp_Image_2023-09-13_at_10.28.10.jpeg">usersApp/2024/06/11/WhatsApp_Image_2023-09-13_at_10.28.10.jpeg</a>
+                        -->
+                      {{ profile_form.photo|add_class:"form-control" }}
+                 </p>
+                    <button type="submit" class="btn btn-success">  Edit  </button>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+<!--
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ user_form.as_p }}
             {{ profile_form.as_p }}
             <button type="submit">Edit</button>
         </form>
-
+-->
 {% endblock %}

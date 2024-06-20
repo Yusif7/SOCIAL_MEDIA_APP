@@ -10,7 +10,12 @@ from postApp.models import Post
 @login_required
 def home(request):
     posts = Post.objects.filter(user=request.user)
-    return render(request, 'home.html', {'posts':posts})
+    profile = Profile.objects.filter(user=request.user).first()
+    context = {
+        'posts': posts,
+        'profile': profile
+    }
+    return render(request, 'home.html', context)
 
 
 def user_login(request):
