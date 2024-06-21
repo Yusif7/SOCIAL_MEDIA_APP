@@ -2,12 +2,31 @@
 
 {% block content %}
 
-<form method="POST" action="{% url 'postApp:post_create' %}" enctype="multipart/form-data">
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form method="post" action="{% url 'postApp:post_create' %}" enctype="multipart/form-data">
 
     {% csrf_token %}
-    {{ post_form.as_p }}
-    <button type="submit">Create</button>
-
+    {% load widget_tweaks %}
+    <ul class="errorlist"><li>This field is required.</li></ul>
+  <p>
+    <label class="form-label">Title:</label>
+    {{ post_form.title|add_class:"form-control" }}
+  </p>
+  <ul class="errorlist"><li>This field is required.</li></ul>
+  <p>
+    <label class="form-label">Image:</label>
+    {{ post_form.image|add_class:"form-control rounded" }}
+  <ul class="errorlist"><li>This field is required.</li></ul>
+  <p>
+    <label class="form-label">New password confirmation:</label>
+    {{ post_form.caption|add_class:"form-control" }}
+  </p>
+    <button type="submit" class="btn btn-success">Create</button>
 </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
 
 {% endblock %}

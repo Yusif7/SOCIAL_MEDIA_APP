@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .forms import PostCreateForm
-
+from .models import Post
 
 @login_required
 def post_create(request):
@@ -14,3 +14,8 @@ def post_create(request):
     else:
         post_form = PostCreateForm(data=request.GET)
     return render(request, 'create.html', {'post_form': post_form})
+
+
+def posts(request):
+    posts = Post.objects.all()
+    return render(request, 'feed.html', {'posts': posts})
